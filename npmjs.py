@@ -36,9 +36,11 @@ class NPMJS:
         package = item['package']
         if package is not None:
             title = '%s(%s)' % (package['name'], package['version'])
-            subtitle = package['links']['homepage']
-            arg = package['links']['homepage']
-            quicklookurl = package['links']['homepage']
+            links = package['links']
+            target_page_url = links['homepage'] if 'homepage' in links else links['npm']
+            subtitle = target_page_url
+            arg = target_page_url
+            quicklookurl = target_page_url
             self.wf.add_item(title=title, subtitle=subtitle, arg=arg,
                              quicklookurl=quicklookurl, valid=True)
 
